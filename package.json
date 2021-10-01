@@ -1,9 +1,9 @@
 {
-  "name": "lesson1",
+  "name": "lesson",
   "version": "1.0.0",
   "main": "homework1.js",
   "scripts": {
-    "dev": "node homework1.js",
+    "dev": "node homework2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nadin",
