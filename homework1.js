@@ -1,9 +1,6 @@
 const colors = require('colors');
 console.log("Поиск простых чисел в диапазоне от ", process.argv[2], "до", process.argv[3]);
 
-let nextColor = "colors.green"
-
-let range = [];
 let n1 = parseInt(process.argv[2]), n2 = parseInt(process.argv[3]);
 for (let m = 2; m <= 3; m++) {
     if (isNaN(process.argv[m]) == true) {
@@ -28,7 +25,7 @@ for (let i = n1; i <= n2; i++) {
                 console.log(colors.yellow(i))
                 break
             case 3:
-                console.log(colors.yellow(i))
+                console.log(colors.red(i))
                 break
         }
         if (per == 3) {

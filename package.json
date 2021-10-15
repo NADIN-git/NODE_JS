@@ -1,15 +1,27 @@
 {
-  "name": "lesson1",
+  "name": "lesson",
   "version": "1.0.0",
-  "main": "homework1.js",
+  "main": "homework4.js",
   "scripts": {
-    "dev": "node homework1.js",
+    "serve": "nodemon homework5.js",
+    "start": "node homework4.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "reader": "homework4.js"
+  },
+  "keywords": [],
   "author": "Nadin",
   "license": "ISC",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "fs": "0.0.1-security",
+    "inquirer": "^8.2.0",
+    "nodemon": "^2.0.13",
+    "promises": "^0.2.5",
+    "reader": "0.0.8",
+    "rm": "^0.1.8",
+    "yargs": "^17.2.1"
   },
   "devDependencies": {},
   "repository": {
