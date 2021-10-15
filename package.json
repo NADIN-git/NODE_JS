@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "homework4.js",
   "scripts": {
+    "serve": "nodemon homework5.js",
     "start": "node homework4.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +17,7 @@
     "colors": "^1.4.0",
     "fs": "0.0.1-security",
     "inquirer": "^8.2.0",
+    "nodemon": "^2.0.13",
     "promises": "^0.2.5",
     "reader": "0.0.8",
     "rm": "^0.1.8",
