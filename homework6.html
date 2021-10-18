@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Socket</title>
+    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js"
+        integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <input type="text" id="input" autofocus>
+    <input type="submit" id="send" value="Send">
+    <p id="numberUsers"></p>
+    <div id="messages"></div>
+</body>
+<script type="text/javascript">
+    const socket = io('localhost:3000');
+
+    const addMessage = (msg) => {
+        const msgSpan = document.createElement('span').innerHTML = msg;
+        document.getElementById('messages').append(msgSpan);
+        document.getElementById('messages').append(document.createElement('br'));
+    };
+
+    socket.on('connect', function () {
+        console.log('Подключение');
+
+        socket.on('SERVER_OUT', function (data) {
+            addMessage(data.msg);
+            socket.emit('disconnect', { msg: document.getElementById('input').value });
+            document.getElementById('input').value = '';
+        });
+
+        socket.on('SERVER_NEW', function (data) {
+            addMessage(data.msg);
+        });
+
+        socket.emit('NEW_CONN_EVEN', { msg: document.getElementById('input').value });
+        document.getElementById('input').value = '';
+
+        socket.on('IN_CLIENTS', function (data) {
+            const msgCount = document.innerHTML = "Количество подключений: " + data.msg;
+            document.getElementById('numberUsers').innerHTML = msgCount;
+        });
+
+        socket.on('OUT_CLIENTS', function (data) {
+            const msgCount = document.innerHTML = "Количество подключений: " + data.msg;
+            document.getElementById('numberUsers').innerHTML = msgCount;
+        });
+
+        socket.emit('CLIENT_COUNT', { msg: document.getElementById('numberUsers').value });
+
+        socket.on('SERVER_MSG', function (data) {
+            addMessage(data.msg);
+        });
+
+        document.getElementById('send').onclick = function () {
+            socket.emit('CLIENT_MSG', { msg: document.getElementById('input').value });
+            document.getElementById('input').value = '';
+        };
+    })
+</script>
+
+</html>
